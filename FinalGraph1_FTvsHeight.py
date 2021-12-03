@@ -1,5 +1,3 @@
-import random
-from typing import Counter
 import matplotlib.pyplot as plt
 from library import loadList
 import pandas as pd

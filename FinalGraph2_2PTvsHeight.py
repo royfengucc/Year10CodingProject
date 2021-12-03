@@ -1,5 +1,3 @@
-import random
-from typing import Counter
 import matplotlib.pyplot as plt
 from library import loadList
 import pandas as pd
@@ -50,6 +48,9 @@ for key,value in dict.items():
 
 graphList.sort()
 
+for i in graphList: 
+    print(i)
+
 df = pd.DataFrame(graphList, columns= ["Height", "FT"])
 
 average = stat.mean(df.FT)
@@ -61,21 +62,20 @@ fitEquation = m*df.Height + b
 
 
 
-plt.xlabel('Height (inches)', fontweight='bold')
-plt.ylabel('FG%', fontweight='bold')
-plt.title("Height VS Field Goal (2PT)%", fontweight="bold", fontsize=20)
-
-plt.bar(df.Height, df.FT)
-plt.xticks(np.arange(69, 87, 1.0))
-plt.yticks(np.arange(0, 105, 5))
+plt.scatter(df.Height, df.FT)
+plt.plot(df.Height, df.FT, "b")
 plt.plot(df.Height, fitEquation, "--",color = "red")
 plt.axhline(y = average,linewidth = 1,color = "gray")
 plt.xticks(np.arange(69, 87, 1.0))
 plt.yticks(np.arange(0, 105, 5))
 
-legendLabels = ['Trendline','Average FT%',"FT% for height"]
-plt.legend(legendLabels,loc=1)
+legendLabels = ['FG% for height', 'Trendline', 'Average FG%']
+plt.legend(legendLabels,loc=4)
 
+
+plt.xlabel('Height (inches)', fontweight='bold')
+plt.ylabel('FG%', fontweight='bold')
+plt.title("Height VS Field Goal %", fontweight="bold", fontsize=20)
 plt.show()
 
 
